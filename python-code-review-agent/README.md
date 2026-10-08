@@ -31,6 +31,30 @@ In this milestone, the review pipeline runs the AST syntax check first. Syntax
 errors return immediately as structured findings; valid code proceeds to the
 OpenAI API for an LLM review.
 
+## What we achieved and what we learned
+
+This app is a small but realistic example of how to build an AI-powered backend in Python.
+
+We achieved a working flow where:
+
+- a client sends Python source to a FastAPI endpoint,
+- the server validates the request body using Pydantic,
+- the code is checked with Python's `ast` module before any AI call,
+- valid code is sent to an LLM for a structured review,
+- the API returns a clean JSON response with findings, severities, and suggestions.
+
+The main learning goals are:
+
+- building a minimal web API with FastAPI and route design,
+- validating request/response models with Pydantic,
+- using Python AST for safe syntax validation without executing user code,
+- integrating an LLM through `AsyncOpenAI` in a non-blocking async flow,
+- handling environment variables for secrets like `OPENAI_API_KEY`,
+- returning structured results instead of raw text,
+- testing the app with real HTTP requests and basic endpoint checks.
+
+This project is intentionally simple and educational: it gives a solid foundation for moving from a basic AI service to a more advanced agent that includes tools, retries, auth, logging, rate limiting, and production-ready safeguards.
+
 ## Run on macOS/Linux
 
 ```bash
